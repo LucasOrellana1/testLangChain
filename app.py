@@ -51,18 +51,18 @@ def get_vector_store_OPENAI(text_chunks):
 #Construcción de embedings mediante instructor, hechos con mi cpu/gpu.
 def get_vector_store_Instructor(text_chunks, save_path='vectorstore.pkl'):
  
-    if os.path.exists(save_path):
+    """ if os.path.exists(save_path):
         print(f"Cargando vector store desde {save_path}...")
         with open(save_path, 'rb') as f:
             vectorstore = pickle.load(f)
-        return vectorstore
+        return vectorstore """
     
     embeddings = HuggingFaceInstructEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
      # Guardar el vectorstore en un archivo
 
-    with open(save_path, 'wb') as f:
-        pickle.dump(vectorstore, f)
+    """ with open(save_path, 'wb') as f:
+        pickle.dump(vectorstore, f) """
 
     return vectorstore
 
